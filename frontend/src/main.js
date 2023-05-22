@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/index'
-import store from './store/store'
+import store from './store/index'
 import './styles/styles.css'
 import axios from 'axios'
+import './styles/index.css'
 
 axios.defaults.baseURL = "http://127.0.0.1:8000"
 

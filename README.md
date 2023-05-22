@@ -1,6 +1,9 @@
 # Project Name
 
-Project Name is a web application built with Django and Vue.js.
+Project Name is a web application built with the following:
+- Django
+- Vue.js
+- TailwindCSS
 
 ## Prerequisites
 
@@ -15,6 +18,9 @@ To get started with the project, follow these steps:
 1. Clone the repository:
 
 2. Build and start the Docker containers:
+- ```docker-compose build```
+- ```docker-compose up```
+
 
 3. Wait for the Docker containers to build and start. You will see logs from both the Django backend and Vue.js frontend.
 
@@ -51,7 +57,7 @@ If you want to make changes to the project and develop locally, follow these ste
 - The Docker configuration files (`Dockerfile` and `docker-compose.yml`) are provided in the project's root directory.
 - Make sure to update the Django and Vue.js project names and configurations according to your project's specifics.
 
-That's it! You're now ready to clone and start the project. Enjoy developing with Django and Vue.js!
+Enjoy!
 
 
 
