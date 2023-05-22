@@ -4,11 +4,13 @@ WORKDIR /app
 
 COPY package*.json ./
 
+# RUN npm install
 RUN npm install
 
-# COPY . .
-COPY package*.json ./
-RUN npm install && \
-    npm install vuex vue-router axios
+COPY . .
+# Build your Vue.js project
+# RUN npm run build
 
 CMD ["npm", "run", "serve"]
+
+
