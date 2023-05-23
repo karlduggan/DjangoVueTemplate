@@ -54,12 +54,22 @@ If you want to make changes to the project and develop locally, follow these ste
 
 ## Additional Notes
 
+- Superuser account detail:
+    - Username: Admin
+    - Password: pass1234word
+    - Email: admin@admin.com
 - The Django backend code can be found in the `backend` directory, and the Vue.js frontend code can be found in the `frontend` directory.
 - The Docker configuration files (`Dockerfile` and `docker-compose.yml`) are provided in the project's root directory.
 - Make sure to update the Django and Vue.js project names and configurations according to your project's specifics.
 
-## DOCKER ISSUE SOLUTIONS
+## DOCKER SOLUTIONS
 
-When building docker it sometimes doesn't create the node modules directory, to resolve this navigate to the frontend directory and `npm install` in the terminal, this will create the node_modules directory
+1. When building docker it sometimes doesn't create the node modules directory, to resolve this navigate to the frontend directory and `npm install` in the terminal, this will create the node_modules directory
+
+2. Use `docker exec -it` for making changes to django and ensure that the container is running first, for example:
+- `python manage.py migrate` = `docker exec -it <container_id> python manage.py migrate`
+- `python manage.py makemigrations` = `docker exec -it <container_id> python manage.py makemigrations`
+- `python manage.py createsuperuser` = `docker exec -it <container_id> python manage.py createsuperuser`
+
 
 Enjoy!

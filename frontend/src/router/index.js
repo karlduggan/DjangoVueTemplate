@@ -3,7 +3,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LandingPage from "../views/LandingPage"
 import AuthenticationPage from "../views/AuthenticationPage"
-
+import DashboardPage from "../views/DashboardPage"
 const routes = [
   {
     path: '/',
@@ -15,7 +15,11 @@ const routes = [
     name: 'login',
     component: AuthenticationPage,
   },
- 
+  {
+  path: '/dashboard',
+  name: 'dashboard',
+  component: DashboardPage,
+  }
 ];
 
 const router = createRouter({

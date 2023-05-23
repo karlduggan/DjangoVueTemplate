@@ -2,17 +2,17 @@
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
       <div class="max-w-md w-full">
         <h2 class="text-3xl font-bold text-center mb-4">Login</h2>
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit.prevent="login">
           <div class="text-left mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your username">
+            <input v-model="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your username" required>
           </div>
           <div class="text-left mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter your password">
+            <input v-model="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter your password" required>
           </div>
           <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Login</button>
+            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Login</button>
             <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">Forgot Password?</a>
           </div>
         </form>
@@ -24,13 +24,41 @@
   </template>
   
   <script>
+  import axios from 'axios';
+  
+  const API_URL = '/api/v1/login/';
+  
   export default {
     name: 'AuthenticationPage',
-    // Add your component logic here
-  }
+    data() {
+      return {
+        username: '',
+        password: '',
+      };
+    },
+    methods: {
+      login() {
+        axios.post(API_URL, {
+          username: this.username,
+          password: this.password,
+        })
+          .then(response => {
+            // Handle successful login, such as storing token in local storage
+            console.log(response.data.token);
+            // Store the token in local storage
+            localStorage.setItem('token', response.data.token);
+            // Redirect to the dashboard page
+            this.$router.push('/dashboard');
+            // Update state
+            this.$store.commit('setLoggedIn', true);
+          })
+          .catch(error => {
+            // Handle login error, such as displaying an error message
+            console.error(error);
+            this.errorMessage = 'Incorrect username or password';
+          });
+      },
+    },
+  };
   </script>
-  
-  <style scoped>
-  /* Add your custom styles here */
-  </style>
   
