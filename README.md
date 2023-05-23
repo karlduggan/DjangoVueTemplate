@@ -55,9 +55,9 @@ If you want to make changes to the project and develop locally, follow these ste
 ## Additional Notes
 
 - Superuser account detail:
-    - Username: Admin
+    - Username: admin
     - Password: pass1234word
-    - Email: admin@admin.com
+    - Email: user@admin.com
 - The Django backend code can be found in the `backend` directory, and the Vue.js frontend code can be found in the `frontend` directory.
 - The Docker configuration files (`Dockerfile` and `docker-compose.yml`) are provided in the project's root directory.
 - Make sure to update the Django and Vue.js project names and configurations according to your project's specifics.
