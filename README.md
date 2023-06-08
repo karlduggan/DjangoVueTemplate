@@ -3,6 +3,7 @@
 Project Name is a web application built with the following:
 
 - Django
+- PostgreSQL
 - Vue.js
 - TailwindCSS
 
@@ -73,3 +74,8 @@ If you want to make changes to the project and develop locally, follow these ste
 
 
 Enjoy!
+
+## Resources
+
+Setting up Django with PostgreSQL
+https://www.youtube.com/watch?v=610jg8bK0I8
