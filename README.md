@@ -79,3 +79,5 @@ Enjoy!
 
 Setting up Django with PostgreSQL
 https://www.youtube.com/watch?v=610jg8bK0I8
+Django & Postgres with Docker Best Practices
+https://www.youtube.com/watch?v=4wdNx2j1j-w
