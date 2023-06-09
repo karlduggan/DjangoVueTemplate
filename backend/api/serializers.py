@@ -7,7 +7,8 @@ class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
 
+
 class UserSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = User
-		fields = '__all__'
+    class Meta:
+        model = User
+        fields = '__all__'
