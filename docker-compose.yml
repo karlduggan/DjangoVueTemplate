@@ -23,11 +23,6 @@ services:
       - .env
     ports:
     - "5555:5432"
-    environment:
-    - POSTGRES_PASSWORD=password
-    - POSTGRES_USER=admin
-    - POSTGRES_DB=postgres
-
   vue:
     build:
       context: ./frontend
