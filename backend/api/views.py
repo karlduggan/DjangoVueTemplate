@@ -72,7 +72,7 @@ class LoginUserView(APIView):
 
 
 from .serializers import PaymentSerializer
-from .models import Payment
+from .models.payment import Payment
 
 class PaymentView(APIView):
     def get(self, request):
@@ -89,7 +89,7 @@ class PaymentView(APIView):
 
 
 from .serializers import PermissionSerializer
-from .models import Permission
+from .models.permission import Permission
 
 class PermissionView(APIView):
     def get(self, request):
@@ -106,7 +106,7 @@ class PermissionView(APIView):
 
 
 from .serializers import ProfileSerializer
-from .models import Profile
+from .models.profile import Profile
 
 class ProfileView(APIView):
     def get(self, request):
@@ -122,7 +122,7 @@ class ProfileView(APIView):
         return Response(serializer.errors, status=400)
 
 from .serializers import SubscriptionSerializer
-from .models import Subscription
+from .models.subscription import Subscription
 
 class SubscriptionView(APIView):
     def get(self, request):

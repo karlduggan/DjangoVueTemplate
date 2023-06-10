@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
-from .models import Payment
+from .models.payment import Payment
 
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,7 +22,7 @@ class PaymentSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'timestamp']
 
 
-from .models import Permission
+from .models.permission import Permission
 
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,7 +31,7 @@ class PermissionSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
 
 from rest_framework import serializers
-from .models import Profile
+from .models.profile import Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,7 +40,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
 
 from rest_framework import serializers
-from .models import Subscription
+from .models.subscription import Subscription
 
 class SubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
