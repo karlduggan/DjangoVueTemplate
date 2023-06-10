@@ -6,6 +6,7 @@ import './styles/styles.css'
 import axios from 'axios'
 import './styles/index.css'
 
+// Setup to the backend "Django"
 axios.defaults.baseURL = "http://127.0.0.1:8000"
 
 const app = createApp(App)

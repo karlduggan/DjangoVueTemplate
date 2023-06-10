@@ -20,6 +20,7 @@ import api.views.generalView as views
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework import routers, serializers, viewsets
 from rest_framework.permissions import IsAuthenticated
+from api.views.postView import PostAPIView, PostDetailAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,6 @@ urlpatterns = [
     path('api/v1/create/', views.CreateUserView.as_view(), name='account-create'),
     path('api/v1/login/', views.LoginUserView.as_view(), name='login'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+    path('posts/', PostAPIView.as_view(), name='post-list'),
+    path('posts/<int:pk>/', PostDetailAPIView.as_view(), name='post-detail')
 ]

@@ -1,64 +1,73 @@
+
 <template>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-      <div class="max-w-md w-full">
-        <h2 class="text-3xl font-bold text-center mb-4">Login</h2>
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit.prevent="login">
-          <div class="text-left mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
-            <input v-model="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your username" required>
-          </div>
-          <div class="text-left mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-            <input v-model="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter your password" required>
-          </div>
-          <div class="flex items-center justify-between">
-            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Login</button>
-            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">Forgot Password?</a>
-          </div>
-        </form>
-        <p class="text-center text-gray-500 text-xs">
-          &copy; 2023 Your Company. All rights reserved.
-        </p>
-      </div>
+  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="max-w-md w-full">
+      <h2 class="text-3xl font-bold text-center mb-4">Login</h2>
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" @submit.prevent="login">
+        <div class="text-left mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+          <input v-model="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your username" required>
+        </div>
+        <div class="text-left mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+          <input v-model="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter your password" required>
+        </div>
+        <div>
+          <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Login</button>
+        </div>
+        <div>  
+          <button class="w-full mt-5 bg-gray-900 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" @click="createAccount">Create an Account</button>
+        </div>
+        <div>
+          <a class="inline-block mt-5 align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">Forgot Password?</a>
+        </div>
+      </form>
+      
+      <p class="text-center text-gray-500 text-xs">
+        &copy; 2023 Your Company. All rights reserved.
+      </p>
     </div>
-  </template>
-  
-  <script>
-  import axios from 'axios';
-  
-  const API_URL = '/api/v1/login/';
-  
-  export default {
-    name: 'AuthenticationPage',
-    data() {
-      return {
-        username: '',
-        password: '',
-      };
-    },
-    methods: {
-      login() {
-        axios.post(API_URL, {
-          username: this.username,
-          password: this.password,
+  </div>
+</template>
+<script>
+import axios from 'axios';
+
+const API_URL = '/api/v1/login/';
+
+export default {
+  name: 'AuthenticationPage',
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
+  methods: {
+    login() {
+      axios.post(API_URL, {
+        username: this.username,
+        password: this.password,
+      })
+        .then(response => {
+          // Handle successful login, such as storing token in local storage
+          console.log(response.data.token);
+          // Store the token in local storage
+          localStorage.setItem('token', response.data.token);
+          // Redirect to the dashboard page
+          this.$router.push('/dashboard');
+          // Update state
+          this.$store.commit('setLoggedIn', true);
         })
-          .then(response => {
-            // Handle successful login, such as storing token in local storage
-            console.log(response.data.token);
-            // Store the token in local storage
-            localStorage.setItem('token', response.data.token);
-            // Redirect to the dashboard page
-            this.$router.push('/dashboard');
-            // Update state
-            this.$store.commit('setLoggedIn', true);
-          })
-          .catch(error => {
-            // Handle login error, such as displaying an error message
-            console.error(error);
-            this.errorMessage = 'Incorrect username or password';
-          });
-      },
+        .catch(error => {
+          // Handle login error, such as displaying an error message
+          console.error(error);
+          this.errorMessage = 'Incorrect username or password';
+        });
     },
-  };
-  </script>
-  
+    createAccount() {
+      // Redirect to create account page
+      this.$router.push('/create-account');
+    },
+  },
+};
+</script>

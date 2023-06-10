@@ -3,7 +3,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LandingPage from "../views/LandingPage";
 import AuthenticationPage from "../views/AuthenticationPage";
+import CreateAccountPage from "../views/CreateAccountPage";
 import DashboardPage from "../views/DashboardPage";
+
 
 const routes = [
   {
@@ -15,6 +17,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: AuthenticationPage,
+  },
+  {
+    path: '/create-account',
+    name: 'create',
+    component: CreateAccountPage,
   },
   {
     path: '/dashboard',
