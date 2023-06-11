@@ -25,7 +25,7 @@ from api.views.postView import PostAPIView, PostDetailAPIView
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Account
-    path('api/v1/create/', views.CreateUserView.as_view(), name='account-create'),
+    path('api/v1/create-account/', views.CreateUserView.as_view(), name='create-account'),
     path('api/v1/login/', views.LoginUserView.as_view(), name='login'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('posts/', PostAPIView.as_view(), name='post-list'),
