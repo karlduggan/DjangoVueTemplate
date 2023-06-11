@@ -1,4 +1,3 @@
-
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="max-w-md w-full">
@@ -21,6 +20,8 @@
         <div>
           <a class="inline-block mt-5 align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">Forgot Password?</a>
         </div>
+        <!-- Add error message display -->
+        <div v-if="errorMessage" class="text-red-500 text-center mt-4">{{ errorMessage }}</div>
       </form>
       
       <p class="text-center text-gray-500 text-xs">
@@ -29,6 +30,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 
@@ -40,34 +42,43 @@ export default {
     return {
       username: '',
       password: '',
+      errorMessage: '',
     };
   },
   methods: {
     login() {
+      this.errorMessage = '';
+
       axios.post(API_URL, {
         username: this.username,
         password: this.password,
       })
         .then(response => {
-          // Handle successful login, such as storing token in local storage
+          // Handle successful login
           console.log(response.data.token);
-          // Store the token in local storage
           localStorage.setItem('token', response.data.token);
-          // Redirect to the dashboard page
           this.$router.push('/dashboard');
-          // Update state
           this.$store.commit('setLoggedIn', true);
         })
         .catch(error => {
           // Handle login error, such as displaying an error message
           console.error(error);
-          this.errorMessage = 'Incorrect username or password';
+          if (error.response && error.response.status === 401) {
+            // Incorrect username or password
+            this.errorMessage = 'Incorrect username or password';
+          } else {
+            // Other error occurred
+            this.errorMessage = 'An error occurred. Please try again later.';
+          }
         });
     },
     createAccount() {
-      // Redirect to create account page
       this.$router.push('/create-account');
     },
   },
 };
 </script>
+
+<style>
+/* Add your custom styles here */
+</style>
